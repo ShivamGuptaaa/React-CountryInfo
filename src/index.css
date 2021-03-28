@@ -5,9 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: burlywood;
+  background-image: url('pic1.jpg');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+label{
+  font-family: 'Lobster Two', cursive;
+  justify-content: center;
+}
+
+button{
+  float: center;
+  font-family: 'Lobster Two', cursive;
+}
+
+.jumbotron{
+  background-color:rgba(233, 193, 193, 0.315);
+  /* opacity:0.2; */
+  /* background-image: url('pic1.jpg'); */
+}
+
+h1{
+  font-family: 'Lobster Two', cursive;
+  color:gold;
 }
