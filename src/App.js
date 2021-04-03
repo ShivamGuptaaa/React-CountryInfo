@@ -5,10 +5,13 @@ import './index.css';
 
 const App = (e) => {
   const [msg, setMsg] = useState("");
-  const Check = () => {
-    let name = document.getElementById("name").value;
-    let pass = document.getElementById("pass").value;
 
+  const Check = (event) => {
+    let name = event.target.name.value;
+    let pass = event.target.pass.value;
+    event.preventDefault();
+    console.log(event);
+    // console.log(event.target.name.value);
     if (name === "" || pass === "") {
       return setMsg("Please fill all details !");
     }
@@ -27,7 +30,7 @@ const App = (e) => {
           <h1 id="heading" className="display-4 text-center">
             Login
           </h1>
-          <form>
+          <form onSubmit={Check}>
             <div className="row form-group">
               <label className="col-2 bg-warning mx-3 font-weight-bolder input-group-text">
                 Username:
@@ -50,12 +53,7 @@ const App = (e) => {
             </div>
             <hr className="my-4" />
             <div className="text-center">
-              {/* <button type="submit" onClick={Check} className="btn btn-danger btn-lg"> */}
-              <button
-                type="button"
-                onClick={Check}
-                className="btn btn-danger btn-lg"
-              >
+              <button type="submit" className="btn btn-danger btn-lg">
                 SUBMIT
               </button>
             </div>
