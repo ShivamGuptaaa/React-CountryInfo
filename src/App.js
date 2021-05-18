@@ -1,70 +1,53 @@
 import React, { useState } from "react";
-import Cred from "./Cred";
-import Greet from "./Greet";
-import './index.css';
+import LoginForm from "./login/LoginForm";
+import Cred from "./login/Cred";
+import Tmp from "./tmp/Tmp"
+import Navbar from "./Navbar"
+import CountryInfo from "./CountryInfo"
+// import {Route,Switch} from "react-router-dom";
+import "./index.css";
 
-const App = (e) => {
-  const [msg, setMsg] = useState("");
+const App = () => {
+  const Msg = () => {
+    return (
+      <div className="text-center mt-2">
+        <h3 id="greet">{user.name}</h3>
+      </div>
+    );
+  };
 
-  const Check = (event) => {
-    let name = event.target.name.value;
-    let pass = event.target.pass.value;
-    event.preventDefault();
-    console.log(event);
-    // console.log(event.target.name.value);
-    if (name === "" || pass === "") {
-      return setMsg("Please fill all details !");
-    }
-
-    for (const obj in Cred) {
-      if (name === Cred[obj].name && pass === Cred[obj].password) {
-        return setMsg(Greet() + Cred[obj].name);
+  const [user, setUser] = useState({ name: "", password: "" });
+  const userDetail = (detail) => {
+    for (let obj in Cred) {
+      if (
+        detail.name.toLowerCase() === Cred[obj].name.toLowerCase() &&
+        detail.password === Cred[obj].password
+      ) {
+        setUser({ name: detail.name, password: detail.password });
+        break;
+      } else {
+        setUser({name:"",password:""});
+        console.log("Details didn't matched");
       }
-      setMsg("Invalid Credential !!!");
     }
   };
+
+  const handleLogout=()=>{
+    setUser({name:"",password:""});
+  }
+
   return (
     <>
-      <div className="container">
-        <div className="jumbotron my-5">
-          <h1 id="heading" className="display-4 text-center">
-            Login
-          </h1>
-          <form onSubmit={Check}>
-            <div className="row form-group">
-              <label className="col-2 bg-warning mx-3 font-weight-bolder input-group-text">
-                Username:
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="form-control col-8 lead"
-              />
-            </div>
-            <div className="row form-group">
-              <label className="col-2  bg-warning mx-3 font-weight-bolder input-group-text">
-                Password:
-              </label>
-              <input
-                type="password"
-                id="pass"
-                className="form-control col-8 lead"
-              />
-            </div>
-            <hr className="my-4" />
-            <div className="text-center">
-              <button type="submit" className="btn btn-danger btn-lg">
-                SUBMIT
-              </button>
-            </div>
-            <div className="text-center mt-2">
-              <h3 id="greet">{msg}</h3>
-            </div>
-          </form>
-        </div>
-      </div>
+      {/* <Switch>
+<Route exact path="/" component={Login} />
+<Route path="/tmp" component={Tmp} />
+
+</Switch> */}
+<Navbar username={user.name} logout={handleLogout}/>
+{(user.name!=="")?<CountryInfo/>:<LoginForm userDetail={userDetail} />}
+      
     </>
   );
 };
-
 export default App;
+ 
