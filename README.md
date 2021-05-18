@@ -1,3 +1,17 @@
+# User detail list
+{
+        name:"John",
+        password:"1234"
+    },
+    {
+        name:"Vijay",
+        password:"4321"
+    },
+    {
+        name:"Raj",
+        password:"6789"
+    }
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
